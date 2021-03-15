@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+tr td:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -45,7 +51,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
