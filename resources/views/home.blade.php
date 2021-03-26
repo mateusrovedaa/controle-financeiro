@@ -18,6 +18,11 @@
                             Categories
                         </button>
                     </a>
+                    <a href="/list-entriestypes">
+                        <button class="btn btn-secondary">
+                            Entries Types
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
