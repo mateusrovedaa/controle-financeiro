@@ -55,4 +55,10 @@ class CategoryController extends Controller
         $update->execute($request->input('id'), ['name' => $request->input('name')]);
         return redirect()->route('list-categories');
     }
+
+    public function delete(int $id)
+    {
+        $this->repository->delete($id);
+        return redirect()->route('list-categories');
+    }
 }

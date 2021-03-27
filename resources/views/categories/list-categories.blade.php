@@ -43,6 +43,11 @@ tr td:last-child {
                                                 Edit
                                             </button>
                                         </a>
+                                        <a href="/delete-category/{{ $category->id }}">
+                                            <button class="btn btn-danger">
+                                                Delete
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

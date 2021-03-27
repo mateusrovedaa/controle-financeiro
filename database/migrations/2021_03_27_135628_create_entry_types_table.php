@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEntriesTypesTable extends Migration
+class CreateEntryTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateEntriesTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('entries_types', function (Blueprint $table) {
+        Schema::create('entry_types', function (Blueprint $table) {
             $table->id();
             $table->string("name");
             $table->timestamps();
         });
+
     }
 
     /**
@@ -27,6 +28,6 @@ class CreateEntriesTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entries_types');
+        Schema::dropIfExists('entry_types');
     }
 }

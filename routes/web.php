@@ -27,6 +27,7 @@ Route::get('/create-category', [App\Http\Controllers\CategoryController::class, 
 Route::post('/save-category', [App\Http\Controllers\CategoryController::class, 'store'])->name('save-category');
 Route::get('/edit-category/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('edit-category');
 Route::put('/update-category', [App\Http\Controllers\CategoryController::class, 'update'])->name('update-category');
+Route::get('/delete-category/{id}', [App\Http\Controllers\CategoryController::class, 'delete'])->name('delete-category');
 
 // Entries types Routes
 Route::get('/list-entriestypes', [App\Http\Controllers\EntryTypeController::class, 'index'])->name('list-entriestypes');
