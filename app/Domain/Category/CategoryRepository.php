@@ -20,4 +20,9 @@ class CategoryRepository
     {
         return Category::all();
     }
+
+    public function delete(int $id)
+	{
+		return Category::destroy($id);
+	}
 }
