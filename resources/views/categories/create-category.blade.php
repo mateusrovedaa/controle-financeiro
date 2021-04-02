@@ -19,9 +19,8 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send
-                                </button>
+                                <button type="submit" class="btn btn-primary">Send</button>
+                                <a href="{{ url('list-categories') }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
                             </div>
                         </div>
                     </form>
