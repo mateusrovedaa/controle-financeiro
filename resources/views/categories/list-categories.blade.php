@@ -2,27 +2,21 @@
 
 @section('content')
 <style>
-tr td:last-child {
-    width: 1%;
-    white-space: nowrap;
-}
+    tr td:last-child {
+        width: 1%;
+        white-space: nowrap;
+    }
 </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Categories list</div>
+            <div class="card-header">{{ __('Categories list') }}</div>
                 <div class="card-body">
-                    <a href="/create-category">
-                        <button class="btn btn-primary">
-                            Add new category
-                        </button>
-                    </a>
-                    <a href="/home">
-                        <button class="btn btn-secondary">
-                            Back to home
-                        </button>
-                    </a>
+
+                    <a href="/create-category"><button class="btn btn-primary">Add new category</button></a>
+                    <a href="/home"><button class="btn btn-secondary">Back to home</button></a>
+
                     <div class="table-responsive">
                         </br>
 
@@ -38,16 +32,8 @@ tr td:last-child {
                                 <tr>
                                     <td>{{ $category->name }}</td>
                                     <td>
-                                        <a href="/edit-category/{{ $category->id }}">
-                                            <button class="btn btn-info">
-                                                Edit
-                                            </button>
-                                        </a>
-                                        <a href="/delete-category/{{ $category->id }}">
-                                            <button class="btn btn-danger">
-                                                Delete
-                                            </button>
-                                        </a>
+                                        <a href="/edit-category/{{ $category->id }}"><button class="btn btn-info">Edit</button></a>
+                                        <a href="/delete-category/{{ $category->id }}"><button class="btn btn-danger">Delete</button></a>
                                     </td>
                                 </tr>
                                 @endforeach

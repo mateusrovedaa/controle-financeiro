@@ -13,16 +13,9 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <a href="/list-categories">
-                        <button class="btn btn-secondary">
-                            Categories
-                        </button>
-                    </a>
-                    <a href="/list-entriestypes">
-                        <button class="btn btn-secondary">
-                            Entries Types
-                        </button>
-                    </a>
+                    <a href="/list-categories"><button class="btn btn-secondary">Categories</button></a>
+
+                    <a href="/list-entriestypes"><button class="btn btn-secondary">Entries Types</button></a>
                 </div>
             </div>
         </div>
