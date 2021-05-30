@@ -13,6 +13,8 @@
                         {{ session('status') }}
                     </div>
                     @endif
+                    <a href="/list-entries"><button class="btn btn-secondary">Entries</button></a>
+
                     <a href="/list-categories"><button class="btn btn-secondary">Categories</button></a>
 
                     <a href="/list-entriestypes"><button class="btn btn-secondary">Entries Types</button></a>

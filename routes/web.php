@@ -35,3 +35,10 @@ Route::get('/create-entrytype', [App\Http\Controllers\EntryTypeController::class
 Route::post('/save-entrytype', [App\Http\Controllers\EntryTypeController::class, 'store'])->name('save-entrytype');
 Route::get('/edit-entrytype/{id}', [App\Http\Controllers\EntryTypeController::class, 'edit'])->name('edit-entrytype');
 Route::put('/update-entrytype', [App\Http\Controllers\EntryTypeController::class, 'update'])->name('update-entrytype');
+
+// Entries Routes
+Route::get('/list-entries', [App\Http\Controllers\EntryController::class, 'index'])->name('list-entries');
+Route::get('/create-entry', [App\Http\Controllers\EntryController::class, 'create'])->name('create-entry');
+Route::post('/save-entry', [App\Http\Controllers\EntryController::class, 'store'])->name('save-entry');
+Route::get('/edit-entry/{id}', [App\Http\Controllers\EntryController::class, 'edit'])->name('edit-entry');
+Route::put('/update-entry', [App\Http\Controllers\EntryController::class, 'update'])->name('update-entry');
