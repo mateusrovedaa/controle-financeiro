@@ -64,7 +64,7 @@ class CategoryTest extends TestCase
         $categoryRepository->delete($category->id);
 
         $this->assertDatabaseMissing('categories', [
-            'nome' => 'Test name',
+            'name' => 'Test name',
         ]);   
     }
 
