@@ -65,7 +65,7 @@ class CategoryTest extends TestCase
 
         $this->assertDatabaseMissing('categories', [
             'name' => 'Test name',
-        ]);   
+        ]);
     }
 
     private function createCategory(): Category

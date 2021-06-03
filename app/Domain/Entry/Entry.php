@@ -12,6 +12,21 @@ class Entry extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'value',
+        'payment_date',
+        'status',
+        'description',
+        'entry_type_id',
+        'category_id',
+        'user_id'
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

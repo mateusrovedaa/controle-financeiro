@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <div class="card-header">{{ __('Categories list') }}</div>
+                <div class="card-header">{{ __('Categories list') }}</div>
                 <div class="card-body">
 
                     <a href="/create-category"><button class="btn btn-primary">Add new category</button></a>
@@ -35,6 +35,11 @@
                                         <a href="/edit-category/{{ $category->id }}"><button class="btn btn-info">Edit</button></a>
                                         <a href="/delete-category/{{ $category->id }}"><button class="btn btn-danger">Delete</button></a>
                                     </td>
+                                    @if($errors->any())
+                                        <div class="alert alert-danger">
+                                            {{ implode('', $errors->all(':message')) }}
+                                        </div>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
