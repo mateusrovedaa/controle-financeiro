@@ -58,7 +58,12 @@ class CategoryController extends Controller
 
     public function delete(int $id)
     {
-        $this->repository->delete($id);
-        return redirect()->route('list-categories');
+        $category = $this->repository->find($id);
+        try {
+            $this->repository->delete($id);
+            return redirect()->route('list-categories');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('list-categories')->withErrors('The category '. $category->name .' will not be deleted as it is used in some entry.');
+        }
     }
 }
