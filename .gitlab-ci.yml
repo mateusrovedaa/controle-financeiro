@@ -1,8 +1,15 @@
 image: docker:stable
 
 stages:
-- build
 - test
+- build
+
+tests:
+  stage: test
+  script:
+    - cp .env.example && .env
+    - php artisan key:generate
+    - ./vendor/bin/phpunit
 
 build:
   image: docker:19.03.12
@@ -15,9 +22,3 @@ build:
     - docker push  $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
   dependencies:
   - tests
-
-tests:
-  script:
-    - cp .env.example && .env
-    - php artisan key:generate 
-    - ./vendor/bin/phpunit
