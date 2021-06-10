@@ -16,6 +16,7 @@ build:
 
 tests:
   stage: test
+  image: $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
   script:
     - cp .env.example .env
     - php artisan key:generate
