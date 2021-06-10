@@ -11,12 +11,12 @@ build:
   services:
     - docker:19.03.12-dind
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro .
+    - docker build -t app .
+    - docker tag app mateusrovedaa/app:latest
 
 tests:
   stage: test
-  image: $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
+  image: mateusrovedaa/app:latest
   script:
     - cp .env.example .env
     - php artisan key:generate
@@ -27,6 +27,7 @@ tests:
 deploy:
   stage: deploy
   script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker push  $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
   dependencies:
     - tests
