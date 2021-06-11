@@ -2,8 +2,6 @@ image: docker:stable
 
 stages:
 - build
-- test
-- deploy
 
 build:
   image: docker:19.03.12
@@ -14,14 +12,4 @@ build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro .
     - docker push $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
-
-tests:
-  stage: test
-  image: $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
-  script:
-    - cp .env.example .env
-    - php artisan key:generate
-    - ./vendor/bin/phpunit
-  dependencies:
-  - build
 
