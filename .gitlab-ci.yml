@@ -29,7 +29,7 @@ deploy-homolog:
     - chmod 600 ~/.ssh/id_ed25519
     - ssh-add ~/.ssh/id_ed25519
   script:
-    - ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -v univates@177.44.248.65 "whoami"
+    - ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/homologacao/update.sh"
 
 deploy-production:
   image: ubuntu
