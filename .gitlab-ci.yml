@@ -32,19 +32,19 @@ deploy-homolog:
     - ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/homologacao/update.sh"
 
 deploy-production:
-  image: ubuntu
+  image: alpine
   stage: deploy-production
   dependencies:
     - build
     - deploy-homolog
   before_script:
-    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+    - apk add openssh-client
     - eval $(ssh-agent -s)
-    - echo "${SSH_PRIVATE_KEY}"
-    - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh-add ~/.ssh/id_ed25519
   script:
-    - ssh -t -p22 univates@177.44.248.65
-    - ssh univates@177.44.248.65 ' ./home/univates/producao/update.sh'
+    - ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/producao/update.sh"
   when: manual
