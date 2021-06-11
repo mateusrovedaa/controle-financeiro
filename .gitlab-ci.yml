@@ -27,7 +27,9 @@ deploy-homolog:
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - ssh-add ~/.ssh/id_rsa
-    - ssh-keyscan 177.44.248.65 >> ~/.ssh/known_hosts
+    - curl ipinfo.io/ip
+    - ping 177.44.248.65
+    - ssh-keyscan -i ~/.ssh/id_rsa 177.44.248.65 >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
   script:
