@@ -16,13 +16,13 @@ build:
     - docker push $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
 
 deploy-homolog:
+  image: alpine
   stage: deploy-homolog
   dependencies:
     - build
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval `ssh-agent -s`
-    - apt-get update -y && apt-get install curl -y
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
@@ -30,7 +30,7 @@ deploy-homolog:
     - ssh-add ~/.ssh/id_rsa
 
   script:
-    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -v univates@177.44.248.65 "./home/univates/homologacao/update.sh"
+    - ssh -o StrictHostKeyChecking=no -v univates@177.44.248.65 "./home/univates/homologacao/update.sh"
 
 deploy-production:
   image: ubuntu
