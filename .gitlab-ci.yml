@@ -28,6 +28,7 @@ deploy-homolog:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
+    - ssh -t -p22 univates@177.44.248.65
     - ssh univates@177.44.248.65 ' ./home/univates/homologacao/update.sh'
 
 deploy-production:
@@ -44,5 +45,6 @@ deploy-production:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
+    - ssh -t -p22 univates@177.44.248.65
     - ssh univates@177.44.248.65 ' ./home/univates/producao/update.sh'
   when: manual
