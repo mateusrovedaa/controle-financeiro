@@ -30,7 +30,7 @@ deploy-homolog:
     - ssh-add ~/.ssh/id_rsa
 
   script:
-    - ssh trictHostKeyChecking=no -i ~/.ssh/id_rsa -v univates@177.44.248.65 "./home/univates/homologacao/update.sh"
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -v univates@177.44.248.65 "./home/univates/homologacao/update.sh"
 
 deploy-production:
   image: ubuntu
