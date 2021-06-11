@@ -28,9 +28,8 @@ deploy-homolog:
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - ssh-add ~/.ssh/id_rsa
-
   script:
-    - ssh -o StrictHostKeyChecking=no -v univates@177.44.248.65 "./home/univates/homologacao/update.sh"
+    - ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -v univates@177.44.248.65 "./home/univates/homologacao/update.sh"
 
 deploy-production:
   image: ubuntu
