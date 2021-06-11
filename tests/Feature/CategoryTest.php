@@ -27,7 +27,7 @@ class CategoryTest extends TestCase
         $categoryRepository->save($category);
 
 	    $this->assertDatabaseHas('categories', [
-	        'name' => 'Tes name',
+	        'name' => 'Test name',
 	    ]);
     }
 
