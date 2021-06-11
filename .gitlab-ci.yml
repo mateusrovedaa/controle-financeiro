@@ -2,6 +2,16 @@ image: docker:stable
 
 stages:
 - build
+- deploy-homolog
+- deploy-production
+
+before_script:
+  # Setup SSH deploy keys
+  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
 build:
   image: docker:19.03.12
@@ -13,3 +23,19 @@ build:
     - docker build -t $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro .
     - docker push $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
 
+deploy-homolog:
+  stage: deploy-homolog
+  dependencies:
+  - build
+  script:
+    - ssh univates@177.44.248.65 ' ./home/univates/homologacao/update.sh'
+  when: manual
+
+deploy-production:
+  stage: deploy-production
+  dependencies:
+  - build
+  - deploy-homolog
+  script:
+    - ssh univates@177.44.248.65 ' ./home/univates/producao/update.sh'
+  when: manual
