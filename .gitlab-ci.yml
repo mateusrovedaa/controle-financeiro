@@ -1,0 +1,50 @@
+image: docker:stable
+
+stages:
+- build
+- deploy-homolog
+- deploy-production
+
+build:
+  image: docker:19.03.12
+  stage: build
+  services:
+    - docker:19.03.12-dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro .
+    - docker push $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
+
+deploy-homolog:
+  image: alpine
+  stage: deploy-homolog
+  dependencies:
+    - build
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh-add ~/.ssh/id_ed25519
+  script:
+    - ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/homologacao/update.sh"
+
+deploy-production:
+  image: alpine
+  stage: deploy-production
+  dependencies:
+    - build
+    - deploy-homolog
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh-add ~/.ssh/id_ed25519
+  script:
+    - ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/producao/update.sh"
+  when: manual
