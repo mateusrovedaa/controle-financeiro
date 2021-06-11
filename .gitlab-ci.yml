@@ -16,6 +16,7 @@ build:
     - docker push $CI_REGISTRY/mateusrovedaa/gcs-controle-financeiro
 
 deploy-homolog:
+  image: ubuntu
   stage: deploy-homolog
   dependencies:
   - build
@@ -29,6 +30,7 @@ deploy-homolog:
   when: manual
 
 deploy-production:
+  image: ubuntu
   stage: deploy-production
   dependencies:
   - build
