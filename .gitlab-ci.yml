@@ -22,7 +22,7 @@ deploy-homolog:
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval `ssh-agent -s`
-    - apt update -y && apt install curl -y
+    - apt-get update -y && apt-get install curl -y
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
