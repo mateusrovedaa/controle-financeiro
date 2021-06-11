@@ -12,7 +12,7 @@ RUN chown 777 /app/storage
 
 RUN cp .env.example .env && php artisan key:generate
 
-RUN ./vendor/bin/phpunit
+RUN ./vendor/bin/phpunit --log-junit log
 
 CMD php artisan serve --host=0.0.0.0 --port=8181
 EXPOSE 8181
