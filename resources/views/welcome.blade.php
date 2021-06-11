@@ -85,7 +85,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                GCS - Financial Control
+                GCS
             </div>
         </div>
     </div>
