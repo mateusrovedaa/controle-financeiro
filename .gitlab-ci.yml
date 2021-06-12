@@ -29,7 +29,7 @@ deploy-homolog:
     - chmod 600 ~/.ssh/id_ed25519
     - ssh-add ~/.ssh/id_ed25519
   script:
-    - scp -P 2201 environment/bin/update-homolog.sh univates@177.44.248.65:/home/univates/homologacao/update.sh
+    - scp -o StrictHostKeyChecking=no -P 2201 environment/bin/update-homolog.sh univates@177.44.248.65:/home/univates/homologacao/update.sh
     - ssh -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/homologacao/update.sh"
 
 deploy-production:
@@ -47,6 +47,6 @@ deploy-production:
     - chmod 600 ~/.ssh/id_ed25519
     - ssh-add ~/.ssh/id_ed25519
   script:
-    - scp -P 2201 environment/bin/update-production.sh univates@177.44.248.65:/home/univates/producao/update.sh
+    - scp -o StrictHostKeyChecking=no -P 2201 environment/bin/update-production.sh univates@177.44.248.65:/home/univates/producao/update.sh
     - ssh -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/producao/update.sh"
   when: manual
