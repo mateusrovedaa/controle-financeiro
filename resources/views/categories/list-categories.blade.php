@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Categories list') }}</div>
+                <div class="card-header">{{ __('Categories listagem') }}</div>
                 <div class="card-body">
 
                     <a href="/create-category"><button class="btn btn-primary">Add new category</button></a>
