@@ -2,3 +2,5 @@
 environment
 README.md
 docs
+/node_modules
+/vendor

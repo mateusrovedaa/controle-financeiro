@@ -31,6 +31,7 @@ deploy-homolog:
   script:
     - scp -o StrictHostKeyChecking=no -P 2201 environment/bin/update-homolog.sh univates@177.44.248.65:/home/univates/homologacao/update.sh
     - ssh -o StrictHostKeyChecking=no -p 2201 univates@177.44.248.65 "/home/univates/homologacao/update.sh"
+  when: manual
   only:
     - main
 
